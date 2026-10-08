@@ -1,0 +1,33 @@
+name: Screenshots
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: screenshots
+  cancel-in-progress: true
+jobs:
+  shoot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install --no-save playwright@1.48.2 && npx playwright install --with-deps chromium
+      - name: Serve and screenshot
+        run: |
+          python3 -m http.server 8080 >/dev/null 2>&1 &
+          sleep 2
+          mkdir -p /tmp/shots && OUT=/tmp/shots node tools/screenshots.mjs | tee /tmp/shots/log.txt
+      - name: Publish to screenshots branch
+        run: |
+          cd /tmp/shots
+          git init -q -b screenshots
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          echo "Screenshots of ${GITHUB_SHA}" > README.md
+          git add -A && git commit -q -m "Screenshots of ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${GITHUB_REPOSITORY}" screenshots

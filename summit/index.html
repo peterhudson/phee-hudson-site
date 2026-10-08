@@ -44,13 +44,20 @@
   .hero .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transform:scale(1.06);
     transition:opacity 1.8s ease, transform 9s linear}
   .hero .slide.on{opacity:1;transform:scale(1)}
-  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,18,21,.55) 0%,rgba(14,18,21,0) 30%,rgba(14,18,21,.1) 60%,rgba(14,18,21,.9) 100%)}
+  /* Two scrims: a top band for the nav, and a dark pool behind the title (bottom-left) so the
+     text stays readable whatever painting is showing. */
+  .hero::after{content:"";position:absolute;inset:0;background:
+    linear-gradient(180deg,rgba(10,13,15,.6) 0%,rgba(10,13,15,0) 22%),
+    linear-gradient(90deg,rgba(10,13,15,.72) 0%,rgba(10,13,15,.35) 45%,rgba(10,13,15,0) 70%),
+    linear-gradient(0deg,rgba(10,13,15,.92) 0%,rgba(10,13,15,.55) 35%,rgba(10,13,15,0) 65%)}
+  .hero-text{text-shadow:0 1px 2px rgba(0,0,0,.45),0 2px 24px rgba(0,0,0,.35)}
   .hero-text{position:absolute;z-index:2;left:0;right:0;bottom:clamp(40px,10vh,110px)}
   .hero h1{font-family:var(--serif);font-weight:300;font-size:clamp(2.6rem,7.5vw,6.5rem);line-height:.98;margin:0;letter-spacing:-.01em}
-  .hero h1 em{font-style:italic;color:var(--glacier)}
-  .hero p{max-width:520px;color:#d6d3cc;margin:22px 0 0;font-size:1.05rem}
-  .hero .caption{position:absolute;z-index:2;right:clamp(16px,4vw,48px);bottom:24px;font-size:.75rem;letter-spacing:.1em;color:var(--mist)}
-  .cta{display:inline-flex;gap:10px;align-items:center;margin-top:30px;padding:13px 26px;border:1px solid var(--snow);text-decoration:none;
+  .hero h1 em{font-style:italic;color:#b9e3ea}
+  .hero p{max-width:520px;color:#ece9e2;margin:22px 0 0;font-size:1.05rem}
+  .hero .caption{position:absolute;z-index:2;right:clamp(16px,4vw,48px);bottom:24px;font-size:.75rem;letter-spacing:.1em;color:#cfd5d8;text-shadow:0 1px 3px rgba(0,0,0,.6)}
+  .hero .eyebrow{color:#d5eef2}
+  .cta{display:inline-flex;gap:10px;align-items:center;margin-top:30px;padding:13px 26px;border:1px solid var(--snow);background:rgba(10,13,15,.35);backdrop-filter:blur(4px);text-shadow:none;text-decoration:none;
     font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;transition:background .3s,color .3s}
   .cta:hover{background:var(--snow);color:var(--ink)}
 
