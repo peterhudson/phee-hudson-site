@@ -49,7 +49,7 @@
 
   .collections{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px);padding:20px 0 90px}
   .col-card{text-decoration:none}
-  .col-card .thumb{aspect-ratio:4/5;overflow:hidden;background:var(--wall)}
+  .col-card .thumb{aspect-ratio:4/3;overflow:hidden;background:var(--wall)}
   .col-card img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
   .col-card:hover img{transform:scale(1.04)}
   .col-card h3{font-family:var(--serif);font-weight:400;font-size:1.5rem;margin:.6em 0 0}
@@ -69,7 +69,7 @@
   .filters a.on{color:var(--ink);font-weight:500}
   .wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:48px clamp(20px,3vw,40px);padding-bottom:100px}
   .piece{text-decoration:none;display:flex;flex-direction:column}
-  .piece .frame{background:var(--wall);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:12%;transition:background .3s}
+  .piece .frame{background:var(--wall);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:8%;transition:background .3s}
   .piece:hover .frame{background:#e9e5dd}
   .piece img{max-height:100%;width:auto;box-shadow:0 10px 24px -10px rgba(0,0,0,.4);opacity:0;transition:opacity .6s}
   .piece img.ld{opacity:1}
@@ -118,10 +118,11 @@
   footer{border-top:1px solid var(--rule);padding:34px 0;font-size:.82rem;color:var(--soft)}
   footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
   footer a{text-decoration:none;margin-left:16px}
-  .proto{position:fixed;left:12px;bottom:12px;z-index:60;background:var(--ink);color:#fff;font-size:.72rem;padding:6px 10px;border-radius:4px;text-decoration:none}
+  .proto{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:7px 16px;font:400 12px/1.4 system-ui,sans-serif;letter-spacing:.02em;text-decoration:none;background:#111;color:#eee}.proto b{font-weight:600}
 </style>
 </head>
 <body>
+<a class="proto" href="../"><span>← All concepts</span><span>Concept 2 of 3 · <b>Gallery</b></span></a>
 <header>
   <div class="wrap">
     <a class="brand" href="#/">Phillipa Hudson <span>SFCA</span></a>
@@ -143,12 +144,12 @@
     <span><a href="https://www.instagram.com/pheehudson/" target="_blank" rel="noopener">Instagram</a><a href="http://facebook.com/Phillipa-Phee-Hudson-SFCA-Art-Page-264932300308082" target="_blank" rel="noopener">Facebook</a><a href="mailto:pheehudson@gmail.com">Email</a></span>
   </div>
 </footer>
-<a class="proto" href="../">← All concepts · Concept 2 “Gallery”</a>
 
 <script src="../shared/works.js"></script>
 <script src="../shared/lightbox.js"></script>
 <script>
 const P = window.PHEE, app = document.getElementById("app");
+const COVER = { new: 1, mountains: 1, prints: 4, coast: 0 };
 const byKey = Object.fromEntries(P.collections.map(c => [c.key, c]));
 const esc = s => s.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
 const img = (src, alt, extra = "") => `<img src="${src}" alt="${esc(alt)}" loading="lazy" onload="this.classList.add('ld')" ${extra}>`;
@@ -176,11 +177,11 @@ const views = {
         <div class="hang-cap"><i>${feat.title}</i>, acrylic on canvas</div>
       </div>
     </section>
-    <div class="section-head"><h2>Collections</h2><span class="kicker">${P.collections.reduce((n,c)=>n+c.works.length,0)} works</span></div>
+    <div class="section-head"><h2>Collections</h2></div>
     <div class="collections">
       ${P.collections.map(c => `
         <a class="col-card" href="#/c/${c.key}">
-          <div class="thumb">${img(c.works[0].src, c.name)}</div>
+          <div class="thumb">${img(c.works[COVER[c.key] || 0].src, c.name)}</div>
           <h3>${c.name}</h3><p>${c.works.length} works</p>
         </a>`).join("")}
     </div>`;

@@ -86,9 +86,9 @@
   /* Commission feature */
   .feature{background:var(--ink-2)}
   .feature .split{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(30px,6vw,90px);align-items:center}
-  .triptych{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-  .triptych img{aspect-ratio:3/4;object-fit:cover;width:100%;cursor:zoom-in}
-  .triptych img:nth-child(2){transform:translateY(-28px)}
+  .triptych{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .triptych img{width:100%;height:auto;cursor:zoom-in}
+  .triptych img:first-child{grid-column:span 2}
   .stat{display:flex;gap:40px;margin-top:30px}
   .stat b{display:block;font-family:var(--serif);font-weight:300;font-size:2.4rem;color:var(--glacier)}
   .stat span{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mist)}
@@ -117,6 +117,7 @@
   .contact .wrap{position:relative}
   .contact h2{font-size:clamp(2.2rem,5.5vw,4.6rem)}
   .contact form{display:flex;gap:10px;justify-content:center;max-width:520px;margin:30px auto 0}
+  @media(max-width:560px){.contact form{flex-direction:column}.contact button{padding:14px}}
   .contact input{flex:1;background:transparent;border:0;border-bottom:1px solid var(--snow);color:var(--snow);font:inherit;padding:12px 4px}
   .contact input::placeholder{color:var(--mist)}
   .contact button{background:var(--snow);color:var(--ink);border:0;padding:0 22px;font:inherit;font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;cursor:pointer}
@@ -124,14 +125,18 @@
   .contact .lines a{text-decoration:none;color:var(--snow)}
   footer{padding:30px 0;border-top:1px solid var(--line);font-size:.8rem;color:var(--mist)}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-  .proto{position:fixed;left:12px;bottom:12px;z-index:60;background:rgba(0,0,0,.7);color:#fff;font-size:.72rem;padding:6px 10px;border-radius:4px;text-decoration:none}
+  .proto{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:7px 16px;font:400 12px/1.4 system-ui,sans-serif;letter-spacing:.02em;text-decoration:none;background:#111;color:#eee}.proto b{font-weight:600}
+  .proto{position:relative;z-index:70}
+  body.has-bar header.nav{top:31px}
+  body.has-bar header.nav.solid{top:0}
 
   .reveal{opacity:0;transform:translateY(24px);transition:opacity 1s ease, transform 1s ease}
   .reveal.in{opacity:1;transform:none}
   @media (prefers-reduced-motion:reduce){*{transition:none!important}.reveal{opacity:1;transform:none}}
 </style>
 </head>
-<body>
+<body class="has-bar">
+<a class="proto" href="../"><span>← All concepts</span><span>Concept 1 of 3 · <b>Summit</b></span></a>
 
 <header class="nav" id="nav">
   <a class="brand" href="#top">Phillipa Hudson<small>SFCA</small></a>
@@ -239,7 +244,6 @@
 </section>
 
 <footer><div class="wrap"><span>© 2026 Phillipa Hudson. All rights reserved.</span><span>Concept 1 · “Summit”</span></div></footer>
-<a class="proto" href="../">← All concepts</a>
 
 <script src="../shared/works.js"></script>
 <script src="../shared/lightbox.js"></script>

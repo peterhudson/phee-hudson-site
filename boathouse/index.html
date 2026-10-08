@@ -31,7 +31,7 @@
   .mast h1{font-family:var(--serif);font-weight:400;font-size:clamp(3.2rem,12vw,10.5rem);line-height:.86;margin:0;letter-spacing:-.02em}
   .mast h1 em{color:var(--rust)}
   .mast .sub{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:22px;font-size:.95rem;color:var(--soft)}
-  @media(max-width:700px){.top nav{gap:12px}.top{flex-direction:column;gap:8px}}
+  @media(max-width:700px){.top nav{gap:6px 16px;justify-content:center}.top{flex-direction:column;gap:8px}}
 
   /* Cover story */
   .cover{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(24px,4vw,56px);padding:clamp(40px,6vw,70px) 0}
@@ -56,11 +56,11 @@
   .chips button span{opacity:.6;margin-left:4px}
   .strip{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px;scrollbar-color:var(--rust) transparent}
   .strip::-webkit-scrollbar{height:6px}.strip::-webkit-scrollbar-thumb{background:var(--rust);border-radius:6px}
-  .strip figure{flex:0 0 auto;margin:0;scroll-snap-align:start;cursor:zoom-in;width:clamp(220px,26vw,330px)}
-  .strip img{width:100%;aspect-ratio:4/5;object-fit:cover;background:var(--sea-2);opacity:0;transition:opacity .6s, transform .6s}
+  .strip figure{flex:0 0 auto;margin:0;scroll-snap-align:start;cursor:zoom-in;max-width:80vw}
+  .strip img{height:clamp(240px,34vw,400px);width:auto;max-width:80vw;object-fit:contain;background:var(--sea-2);opacity:0;transition:opacity .6s, transform .6s}
   .strip img.ld{opacity:1}
   .strip figure:hover img{transform:translateY(-4px)}
-  .strip figcaption{font-size:.88rem;margin-top:10px;color:#dfe7e4}
+  .strip figcaption{font-size:.88rem;margin-top:10px;color:#dfe7e4;max-width:300px}
   .strip figcaption b{display:block;font-weight:400;color:var(--rust);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase}
   .arrows{display:flex;gap:8px}
   .arrows button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(245,239,228,.35);background:none;color:var(--cream);cursor:pointer;font-size:1.1rem}
@@ -107,16 +107,17 @@
   @media(max-width:860px){.letter .split{grid-template-columns:1fr}}
   footer{padding:24px 0;font-size:.8rem;color:var(--soft)}
   footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-  .proto{position:fixed;left:12px;bottom:12px;z-index:60;background:var(--ink);color:#fff;font-size:.72rem;padding:6px 10px;border-radius:4px;text-decoration:none}
+  .proto{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:7px 16px;font:400 12px/1.4 system-ui,sans-serif;letter-spacing:.02em;text-decoration:none;background:#111;color:#eee}.proto b{font-weight:600}
 </style>
 </head>
 <body>
+<a class="proto" href="../"><span>← All concepts</span><span>Concept 3 of 3 · <b>Boathouse</b></span></a>
 
 <div class="wrap">
   <div class="top">
     <span>Vancouver Island, British Columbia</span>
     <nav>
-      <a href="#places">Paintings</a><a href="#for-sale">For sale</a><a href="#journal">Studio journal</a><a href="#guides">Field guides</a><a href="#contact">Contact</a>
+      <a href="#places">Paintings</a><a href="#for-sale">For sale</a><a href="#journal">Studio journal</a><a href="#about">About</a><a href="#contact">Contact</a>
     </nav>
   </div>
   <header class="mast">
@@ -174,12 +175,13 @@
   </div>
 </section>
 
-<section class="guides" id="guides">
+<section class="guides" id="about">
   <div class="wrap split">
     <div>
-      <h2>Field guides</h2>
-      <p>Phee is also the author of illustrated guides to the coastal flowers, alpine flowers and trees of the Pacific Northwest, written for hikers and paddlers who want to know what they are looking at.</p>
-      <a class="link" href="https://phillipahudson.com/page/coastal_flower_guide" target="_blank" rel="noopener">About the guides →</a>
+      <h2>About Phee</h2>
+      <p>Born in Rhodesia (now Zimbabwe) and trained at the University of Cape Town, Phee came to Canada in the late 1970s and has lived on Vancouver Island since 1981. A mountaineer, backcountry skier and sea kayaker, she turned to painting full time in 2006 and became a Senior Member of the Federation of Canadian Artists in 2019. Her paintings hang in collections on four continents.</p>
+      <p>She is also the author of field guides to the coastal flowers, alpine flowers and trees of the Pacific Northwest.</p>
+      <a class="link" href="https://phillipahudson.com/page/coastal_flower_guide" target="_blank" rel="noopener">About the field guides →</a>
     </div>
     <div class="pics" id="guide-pics"></div>
   </div>
@@ -204,7 +206,6 @@
 </section>
 
 <footer><div class="wrap"><span>© 2026 Phillipa Hudson. All rights reserved.</span><span>Concept 3 · “Boathouse”</span></div></footer>
-<a class="proto" href="../">← All concepts</a>
 
 <script src="../shared/works.js"></script>
 <script src="../shared/lightbox.js"></script>
@@ -264,9 +265,9 @@ function meta(w) {
 }
 
 // Cover story
-const cov = col("new")[1];
+const cov = col("new")[0];
 $("#cover-fig").innerHTML = `<img src="${cov.large}" alt="${cov.title}"><figcaption>${cov.title}, acrylic on canvas</figcaption>`;
-$("#cover-fig").onclick = () => Lightbox.open(col("new"), 1, { renderMeta: meta });
+$("#cover-fig").onclick = () => Lightbox.open(col("new"), 0, { renderMeta: meta });
 $("#cover-title").textContent = "Winter light in the Rockies, and the giants of the north";
 
 // For sale
