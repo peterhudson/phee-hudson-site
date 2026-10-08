@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Phillipa Hudson · Paintings</title>
+<meta name="description" content="Original acrylic paintings and limited edition prints by Phillipa (Phee) Hudson SFCA, Vancouver Island.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#fbfaf7; --wall:#f1eee8; --ink:#1d1d1b; --soft:#6f6c66; --rule:#e2ded6; --accent:#9a3b26;
+    --serif:"Cormorant Garamond",Georgia,serif; --sans:"Jost",system-ui,sans-serif;
+    --lb-bg:rgba(251,250,247,.98); --lb-fg:#1d1d1b; --lb-muted:#6f6c66; --lb-font:var(--sans);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+
+  header{border-bottom:1px solid var(--rule);background:var(--paper);position:sticky;top:0;z-index:20}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:20px}
+  .brand{text-decoration:none;font-family:var(--serif);font-size:1.65rem;letter-spacing:.01em;white-space:nowrap}
+  .brand span{color:var(--soft);font-size:1rem;font-style:italic;margin-left:6px}
+  nav{display:flex;gap:clamp(14px,2.6vw,34px);font-size:.84rem;letter-spacing:.06em}
+  nav a{text-decoration:none;color:var(--soft);padding:4px 0;border-bottom:1px solid transparent}
+  nav a:hover,nav a.on{color:var(--ink);border-color:var(--ink)}
+  @media(max-width:760px){header .wrap{flex-direction:column;height:auto;padding-block:14px;gap:6px}nav{flex-wrap:wrap;justify-content:center;gap:4px 16px}}
+
+  main{min-height:70vh}
+  .view{animation:fade .5s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  h1,h2{font-family:var(--serif);font-weight:400;letter-spacing:-.005em}
+  .kicker{font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;color:var(--soft)}
+
+  /* Home */
+  .intro{display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(30px,6vw,80px);align-items:center;padding:clamp(40px,7vw,90px) 0}
+  .intro h1{font-size:clamp(2.4rem,5vw,4.2rem);line-height:1.05;margin:.25em 0 .4em}
+  .intro p{color:var(--soft);font-size:1.08rem;max-width:440px}
+  .hang{background:var(--wall);padding:clamp(24px,5vw,64px);display:flex;justify-content:center;cursor:zoom-in}
+  .hang img{box-shadow:0 1px 2px rgba(0,0,0,.08),0 18px 40px -12px rgba(0,0,0,.35);max-height:62vh;width:auto}
+  .hang-cap{font-size:.85rem;color:var(--soft);margin-top:12px;text-align:right}
+  .btn{display:inline-block;margin-top:18px;padding:12px 24px;background:var(--ink);color:var(--paper);text-decoration:none;font-size:.82rem;letter-spacing:.1em}
+  .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ink);margin-left:8px}
+  @media(max-width:760px){.intro{grid-template-columns:1fr}.intro>div:first-child{order:2}}
+
+  .collections{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,36px);padding:20px 0 90px}
+  .col-card{text-decoration:none}
+  .col-card .thumb{aspect-ratio:4/5;overflow:hidden;background:var(--wall)}
+  .col-card img{width:100%;height:100%;object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+  .col-card:hover img{transform:scale(1.04)}
+  .col-card h3{font-family:var(--serif);font-weight:400;font-size:1.5rem;margin:.6em 0 0}
+  .col-card p{margin:.1em 0 0;color:var(--soft);font-size:.88rem}
+  @media(max-width:860px){.collections{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.collections{grid-template-columns:1fr}}
+
+  .section-head{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--rule);padding-top:26px;margin-top:20px}
+  .section-head h2{font-size:2rem;margin:0}
+
+  /* Collection */
+  .col-head{padding:50px 0 30px;max-width:720px}
+  .col-head h1{font-size:clamp(2.2rem,4.5vw,3.4rem);margin:.15em 0 .2em}
+  .col-head p{color:var(--soft);margin:0}
+  .filters{display:flex;gap:6px 18px;flex-wrap:wrap;border-bottom:1px solid var(--rule);padding-bottom:14px;margin-bottom:34px;font-size:.85rem}
+  .filters a{text-decoration:none;color:var(--soft)}
+  .filters a.on{color:var(--ink);font-weight:500}
+  .wall{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:48px clamp(20px,3vw,40px);padding-bottom:100px}
+  .piece{text-decoration:none;display:flex;flex-direction:column}
+  .piece .frame{background:var(--wall);aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:12%;transition:background .3s}
+  .piece:hover .frame{background:#e9e5dd}
+  .piece img{max-height:100%;width:auto;box-shadow:0 10px 24px -10px rgba(0,0,0,.4);opacity:0;transition:opacity .6s}
+  .piece img.ld{opacity:1}
+  .piece .label{margin-top:12px;font-size:.92rem;line-height:1.4}
+  .piece .label i{display:block;font-style:normal;color:var(--soft);font-size:.8rem;margin-top:2px}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:6px;vertical-align:1px}
+
+  /* Work detail */
+  .detail{display:grid;grid-template-columns:1.5fr 1fr;gap:clamp(30px,5vw,70px);padding:40px 0 100px;align-items:start}
+  .detail .hang{padding:clamp(20px,6vw,80px)}
+  .detail .hang img{max-height:72vh}
+  .detail h1{font-size:clamp(2rem,3.6vw,2.9rem);line-height:1.1;margin:.2em 0 .5em}
+  .facts{border-top:1px solid var(--rule);margin:0;padding:0}
+  .facts div{display:flex;justify-content:space-between;border-bottom:1px solid var(--rule);padding:11px 0;font-size:.92rem}
+  .facts dt{color:var(--soft)} .facts dd{margin:0;text-align:right}
+  .crumbs{font-size:.8rem;color:var(--soft);padding-top:28px}
+  .crumbs a{text-decoration:none}
+  .pager{display:flex;justify-content:space-between;margin-top:30px;font-size:.85rem}
+  .pager a{text-decoration:none;color:var(--soft)}
+  @media(max-width:860px){.detail{grid-template-columns:1fr}}
+
+  /* About */
+  .about{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(30px,6vw,80px);padding:60px 0 100px}
+  .about img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .about h1{font-size:clamp(2.2rem,4vw,3.2rem);margin:.2em 0 .5em}
+  .about p{font-size:1.04rem}
+  .about blockquote{font-family:var(--serif);font-style:italic;font-size:1.6rem;line-height:1.3;margin:1.2em 0;padding-left:20px;border-left:2px solid var(--accent)}
+  .cv{columns:2;font-size:.9rem;color:var(--soft);padding:0;list-style:none}
+  .cv li{break-inside:avoid;margin-bottom:8px}
+  .cv b{color:var(--ink);font-weight:500;display:block}
+  @media(max-width:760px){.about{grid-template-columns:1fr}.cv{columns:1}}
+
+  /* Contact */
+  .contact{max-width:640px;padding:60px 0 100px}
+  .contact h1{font-size:clamp(2.2rem,4vw,3.2rem);margin:.2em 0 .3em}
+  form{display:grid;gap:14px;margin-top:30px}
+  label{font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft)}
+  input,textarea,select{width:100%;margin-top:6px;padding:12px;border:1px solid var(--rule);background:#fff;font:inherit;color:var(--ink)}
+  textarea{min-height:130px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:520px){.row{grid-template-columns:1fr}}
+  .check{display:flex;gap:10px;align-items:center;text-transform:none;letter-spacing:0;font-size:.9rem;color:var(--ink)}
+  .check input{width:auto;margin:0}
+  button.btn{border:0;cursor:pointer;font:inherit;justify-self:start}
+
+  footer{border-top:1px solid var(--rule);padding:34px 0;font-size:.82rem;color:var(--soft)}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+  footer a{text-decoration:none;margin-left:16px}
+  .proto{position:fixed;left:12px;bottom:12px;z-index:60;background:var(--ink);color:#fff;font-size:.72rem;padding:6px 10px;border-radius:4px;text-decoration:none}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#/">Phillipa Hudson <span>SFCA</span></a>
+    <nav id="nav">
+      <a href="#/c/new">New</a>
+      <a href="#/c/available">Available</a>
+      <a href="#/c/mountains">Mountains</a>
+      <a href="#/c/coast">Coast</a>
+      <a href="#/c/prints">Prints</a>
+      <a href="#/about">About</a>
+      <a href="#/contact">Contact</a>
+    </nav>
+  </div>
+</header>
+<main class="wrap" id="app"></main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Phillipa Hudson · Vancouver Island, British Columbia</span>
+    <span><a href="https://www.instagram.com/pheehudson/" target="_blank" rel="noopener">Instagram</a><a href="http://facebook.com/Phillipa-Phee-Hudson-SFCA-Art-Page-264932300308082" target="_blank" rel="noopener">Facebook</a><a href="mailto:pheehudson@gmail.com">Email</a></span>
+  </div>
+</footer>
+<a class="proto" href="../">← All concepts · Concept 2 “Gallery”</a>
+
+<script src="../shared/works.js"></script>
+<script src="../shared/lightbox.js"></script>
+<script>
+const P = window.PHEE, app = document.getElementById("app");
+const byKey = Object.fromEntries(P.collections.map(c => [c.key, c]));
+const esc = s => s.replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;");
+const img = (src, alt, extra = "") => `<img src="${src}" alt="${esc(alt)}" loading="lazy" onload="this.classList.add('ld')" ${extra}>`;
+
+function status(w, col) {
+  if (P.isAvailable(w)) return `<span class="dot"></span>Original available`;
+  if (col.key === "prints") return `Giclée print from $${Math.min(...w.prints.map(p => p.price))}`;
+  if (col.key === "lakelouise") return "Fairmont Chateau Lake Louise";
+  return "Acrylic on canvas";
+}
+
+const views = {
+  home() {
+    const feat = byKey.new.works[0];
+    return `
+    <section class="intro">
+      <div>
+        <div class="kicker">Acrylic paintings · Vancouver Island</div>
+        <h1>Mountains, coast and the wild light between them.</h1>
+        <p>Phee Hudson paints the Canadian Rockies, the Coast Mountains and the shores of British Columbia in bold, saturated colour, from a boathouse studio on the water.</p>
+        <a class="btn" href="#/c/new">New paintings</a><a class="btn ghost" href="#/c/available">Available work</a>
+      </div>
+      <div>
+        <a class="hang" href="#/w/new/0">${img(feat.large, feat.title, 'loading="eager"')}</a>
+        <div class="hang-cap"><i>${feat.title}</i>, acrylic on canvas</div>
+      </div>
+    </section>
+    <div class="section-head"><h2>Collections</h2><span class="kicker">${P.collections.reduce((n,c)=>n+c.works.length,0)} works</span></div>
+    <div class="collections">
+      ${P.collections.map(c => `
+        <a class="col-card" href="#/c/${c.key}">
+          <div class="thumb">${img(c.works[0].src, c.name)}</div>
+          <h3>${c.name}</h3><p>${c.works.length} works</p>
+        </a>`).join("")}
+    </div>`;
+  },
+  collection(key) {
+    const c = byKey[key]; if (!c) return views.home();
+    return `
+    <div class="col-head"><div class="kicker">Collection</div><h1>${c.name}</h1><p>${c.blurb}</p></div>
+    <div class="filters">${P.collections.map(x => `<a href="#/c/${x.key}" class="${x.key===key?'on':''}">${x.name}</a>`).join("")}</div>
+    <div class="wall">
+      ${c.works.map((w, i) => `
+        <a class="piece" href="#/w/${key}/${i}">
+          <div class="frame">${img(w.src, w.title)}</div>
+          <div class="label">${w.title}<i>${status(w, c)}</i></div>
+        </a>`).join("")}
+    </div>`;
+  },
+  work(key, i) {
+    const c = byKey[key]; i = +i; const w = c && c.works[i]; if (!w) return views.home();
+    const prev = (i - 1 + c.works.length) % c.works.length, next = (i + 1) % c.works.length;
+    const subject = encodeURIComponent("Enquiry: " + w.title);
+    let facts = `<div><dt>Medium</dt><dd>Acrylic on canvas</dd></div>`;
+    let action = `<a class="btn" href="#/contact?about=${encodeURIComponent(w.title)}">Enquire about this painting</a>`;
+    if (P.isAvailable(w)) facts += `<div><dt>Status</dt><dd><span class="dot"></span>Available</dd></div>`;
+    if (w.prints) {
+      facts = `<div><dt>Edition</dt><dd>Giclée on canvas, limited to 100</dd></div>` +
+        w.prints.map(p => `<div><dt>${p.size}</dt><dd>$${p.price.toLocaleString()}</dd></div>`).join("") +
+        `<div><dt>Includes</dt><dd>Certificate of authenticity</dd></div>`;
+      action = `<a class="btn" href="#/contact?about=${encodeURIComponent(w.title + " (print)")}">Order a print</a>`;
+    }
+    return `
+    <div class="crumbs"><a href="#/">Home</a> / <a href="#/c/${key}">${c.name}</a></div>
+    <div class="detail">
+      <div class="hang" id="zoom" data-i="${i}">${img(w.large, w.title, 'loading="eager"')}</div>
+      <div>
+        <div class="kicker">${c.name}</div>
+        <h1>${w.title}</h1>
+        <dl class="facts">${facts}</dl>
+        ${action}
+        <div class="pager"><a href="#/w/${key}/${prev}">← ${c.works[prev].title}</a><a href="#/w/${key}/${next}">${c.works[next].title} →</a></div>
+      </div>
+    </div>`;
+  },
+  about() {
+    const pt = P.artist.portraits;
+    return `
+    <div class="about">
+      <div>${img(pt.portrait, "Phee Hudson")}</div>
+      <div>
+        <div class="kicker">About</div>
+        <h1>Phillipa “Phee” Hudson</h1>
+        <p>Phee was born in Rhodesia (now Zimbabwe) and studied art at the University of Cape Town. After working in England she came to Canada in the late 1970s and settled on Vancouver Island in 1981, where she paints from a boathouse studio on the water.</p>
+        <blockquote>A lifelong mountaineer, backcountry skier and sea kayaker, she paints places she has travelled through on foot, on skis and by boat.</blockquote>
+        <p>She ran Mineral World and the Scratch Patch in Sidney until 2006, then turned to painting, first in watercolour and now mostly in acrylic. Her bold colour and wild subjects have found collectors on four continents.</p>
+        <ul class="cv">
+          <li><b>2019</b>Senior Member, Federation of Canadian Artists (SFCA)</li>
+          <li><b>2013</b>Three 6′ × 8′ lobby paintings, Fairmont Chateau Lake Louise</li>
+          <li><b>Author</b>Field guides to the coastal flowers, alpine flowers and trees of the Pacific Northwest</li>
+          <li><b>Awards</b>Numerous juried awards</li>
+        </ul>
+        <a class="btn" href="#/c/lakelouise">See the Lake Louise commission</a>
+      </div>
+    </div>`;
+  },
+  contact(q) {
+    const about = new URLSearchParams(q || "").get("about") || "";
+    return `
+    <div class="contact">
+      <div class="kicker">Contact</div>
+      <h1>Get in touch</h1>
+      <p style="color:var(--soft)">For originals, prints and commissions, write below or email <a href="mailto:pheehudson@gmail.com">pheehudson@gmail.com</a>. Phone 250 888 9891.</p>
+      <form onsubmit="event.preventDefault();this.outerHTML='<p><b>Thank you.</b> (Prototype only, nothing was sent.)</p>'">
+        <div class="row"><label>Name<input required></label><label>Email<input type="email" required></label></div>
+        <label>About<select><option>${about ? esc(about) : "A general question"}</option><option>An original painting</option><option>A limited edition print</option><option>A commission</option></select></label>
+        <label>Message<textarea></textarea></label>
+        <label class="check"><input type="checkbox" checked> Send me news of new paintings and shows</label>
+        <button class="btn">Send</button>
+      </form>
+    </div>`;
+  },
+};
+
+function route() {
+  const [path, q] = location.hash.replace(/^#/, "").split("?");
+  const parts = path.split("/").filter(Boolean);
+  let html;
+  if (parts[0] === "c") html = views.collection(parts[1]);
+  else if (parts[0] === "w") html = views.work(parts[1], parts[2]);
+  else if (parts[0] === "about") html = views.about();
+  else if (parts[0] === "contact") html = views.contact(q);
+  else html = views.home();
+  app.innerHTML = `<div class="view">${html}</div>`;
+  document.querySelectorAll("#nav a").forEach(a => a.classList.toggle("on", location.hash.startsWith(a.getAttribute("href"))));
+  const z = document.getElementById("zoom");
+  if (z) z.onclick = () => Lightbox.open(byKey[parts[1]].works, +z.dataset.i);
+  scrollTo(0, 0);
+}
+addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>

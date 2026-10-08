@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Phee Hudson · Website Concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f6f3ee;--ink:#1f1d1a;--soft:#6b665e;--rule:#ddd6ca}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,sans-serif;font-weight:300;line-height:1.6}
+  .wrap{max-width:1180px;margin:0 auto;padding:clamp(40px,7vw,90px) clamp(16px,4vw,40px)}
+  h1{font-family:Fraunces,Georgia,serif;font-weight:300;font-size:clamp(2.4rem,6vw,4.4rem);line-height:1.02;margin:0 0 .3em}
+  .lede{font-size:1.12rem;color:var(--soft);max-width:680px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,34px);margin-top:50px}
+  @media(max-width:900px){.grid{grid-template-columns:1fr}}
+  a.card{display:block;text-decoration:none;color:inherit;background:#fff;border:1px solid var(--rule);transition:transform .3s, box-shadow .3s}
+  a.card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -20px rgba(0,0,0,.3)}
+  .shot{aspect-ratio:4/3;background-size:cover;background-position:center;position:relative}
+  .shot span{position:absolute;left:14px;bottom:14px;padding:4px 10px;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase}
+  .body{padding:20px 22px 24px}
+  .n{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+  h2{font-family:Fraunces,Georgia,serif;font-weight:400;font-size:1.8rem;margin:.15em 0 .3em}
+  .body p{margin:0;color:var(--soft);font-size:.95rem}
+  .notes{margin-top:60px;border-top:1px solid var(--rule);padding-top:26px;font-size:.92rem;color:var(--soft);max-width:760px}
+  .notes b{color:var(--ink);font-weight:500}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="n">For Phee · October 2026</div>
+  <h1>Three ideas for a new website</h1>
+  <p class="lede">Each of these uses your own paintings and words from phillipahudson.com, presented in a different style. Click into each one, try it on your phone too, and tell Peter which you like best, or which bits of each.</p>
+
+  <div class="grid">
+    <a class="card" href="summit/">
+      <div class="shot" id="s1"><span style="background:#0e1215;color:#f2efe8">Dark · cinematic</span></div>
+      <div class="body"><div class="n">Concept 1</div><h2>Summit</h2>
+      <p>Full-screen paintings fade one into the next as you arrive. Dark, gallery-at-night feel that makes the colour glow. Everything on one scrolling page.</p></div>
+    </a>
+    <a class="card" href="gallery/">
+      <div class="shot" id="s2"><span style="background:#fbfaf7;color:#1d1d1b">Light · classic</span></div>
+      <div class="body"><div class="n">Concept 2</div><h2>Gallery</h2>
+      <p>A quiet, white-walled gallery. Every painting gets its own page with sizes, print prices and an “Enquire” button, so you can send people a link to one painting.</p></div>
+    </a>
+    <a class="card" href="boathouse/">
+      <div class="shot" id="s3"><span style="background:#c2552d;color:#fff">Warm · storytelling</span></div>
+      <div class="body"><div class="n">Concept 3</div><h2>Boathouse</h2>
+      <p>Magazine-style, with a cover story for new work. Paintings are grouped by place (Rockies, Coast Mountains, the Island, the North, the sea) for browsing.</p></div>
+    </a>
+  </div>
+
+  <div class="notes">
+    <p><b>These are mock-ups.</b> The forms and sign-ups don't send anything yet, and the paintings are shown straight from your current website. Nothing on your real site has been changed.</p>
+  </div>
+</div>
+<script src="shared/works.js"></script>
+<script>
+  const P = window.PHEE;
+  document.getElementById("s1").style.backgroundImage = `url("${P.hero[4].src}")`;
+  document.getElementById("s2").style.backgroundImage = `url("${P.collections[0].works[0].src}")`;
+  document.getElementById("s3").style.backgroundImage = `url("${P.hero[3].src}")`;
+</script>
+</body>
+</html>

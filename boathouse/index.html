@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<title>Phee Hudson · Paintings from the Boathouse</title>
+<meta name="description" content="Phee Hudson paints the mountains and coast of western Canada from a boathouse studio on Vancouver Island. Browse by place, see new work and get in touch.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f5efe4; --sand:#eadfcc; --sea:#1f4a4c; --sea-2:#163738; --rust:#c2552d; --ink:#22201c; --soft:#6d665b;
+    --serif:"DM Serif Display",Georgia,serif; --sans:"DM Sans",system-ui,sans-serif;
+    --lb-bg:rgba(22,55,56,.97); --lb-fg:#f5efe4; --lb-muted:#b9c9c4; --lb-font:var(--sans);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
+  img{display:block;max-width:100%}
+  a{color:inherit}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 clamp(16px,4vw,44px)}
+
+  /* Masthead */
+  .top{display:flex;justify-content:space-between;align-items:center;padding:18px 0;font-size:.85rem}
+  .top nav{display:flex;gap:22px;flex-wrap:wrap}
+  .top nav a{text-decoration:none}
+  .top nav a:hover{color:var(--rust)}
+  .mast{padding:clamp(30px,6vw,70px) 0 30px;border-bottom:2px solid var(--ink)}
+  .mast h1{font-family:var(--serif);font-weight:400;font-size:clamp(3.2rem,12vw,10.5rem);line-height:.86;margin:0;letter-spacing:-.02em}
+  .mast h1 em{color:var(--rust)}
+  .mast .sub{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-top:22px;font-size:.95rem;color:var(--soft)}
+  @media(max-width:700px){.top nav{gap:12px}.top{flex-direction:column;gap:8px}}
+
+  /* Cover story */
+  .cover{display:grid;grid-template-columns:1.6fr 1fr;gap:clamp(24px,4vw,56px);padding:clamp(40px,6vw,70px) 0}
+  .cover figure{margin:0;cursor:zoom-in}
+  .cover figure img{width:100%;aspect-ratio:4/3;object-fit:cover}
+  .cover figcaption{font-size:.8rem;color:var(--soft);margin-top:8px}
+  .tag{display:inline-block;background:var(--rust);color:#fff;font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;padding:4px 10px;font-weight:600}
+  .cover h2{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.6vw,3rem);line-height:1.05;margin:.4em 0 .4em}
+  .cover p{font-size:1.06rem}
+  .cover .drop::first-letter{font-family:var(--serif);float:left;font-size:4.2em;line-height:.8;padding:6px 10px 0 0;color:var(--sea)}
+  .link{display:inline-flex;gap:8px;font-weight:600;text-decoration:none;border-bottom:2px solid var(--rust);padding-bottom:2px;margin-top:10px}
+  @media(max-width:860px){.cover{grid-template-columns:1fr}}
+
+  /* Places */
+  .places{background:var(--sea);color:var(--cream);padding:clamp(60px,8vw,100px) 0}
+  .places h2,.journal h2,.guides h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,5vw,3.8rem);margin:0;line-height:1}
+  .places .intro{display:flex;justify-content:space-between;align-items:end;gap:20px;flex-wrap:wrap;margin-bottom:34px}
+  .places .intro p{max-width:420px;color:#c9d6d2;margin:0}
+  .chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+  .chips button{font:inherit;font-size:.85rem;padding:8px 16px;border-radius:30px;border:1px solid rgba(245,239,228,.35);background:none;color:var(--cream);cursor:pointer}
+  .chips button[aria-pressed=true]{background:var(--cream);color:var(--sea);border-color:var(--cream)}
+  .chips button span{opacity:.6;margin-left:4px}
+  .strip{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:18px;scrollbar-color:var(--rust) transparent}
+  .strip::-webkit-scrollbar{height:6px}.strip::-webkit-scrollbar-thumb{background:var(--rust);border-radius:6px}
+  .strip figure{flex:0 0 auto;margin:0;scroll-snap-align:start;cursor:zoom-in;width:clamp(220px,26vw,330px)}
+  .strip img{width:100%;aspect-ratio:4/5;object-fit:cover;background:var(--sea-2);opacity:0;transition:opacity .6s, transform .6s}
+  .strip img.ld{opacity:1}
+  .strip figure:hover img{transform:translateY(-4px)}
+  .strip figcaption{font-size:.88rem;margin-top:10px;color:#dfe7e4}
+  .strip figcaption b{display:block;font-weight:400;color:var(--rust);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase}
+  .arrows{display:flex;gap:8px}
+  .arrows button{width:44px;height:44px;border-radius:50%;border:1px solid rgba(245,239,228,.35);background:none;color:var(--cream);cursor:pointer;font-size:1.1rem}
+  .arrows button:hover{background:var(--cream);color:var(--sea)}
+
+  /* For sale band */
+  .sale{padding-block:clamp(60px,8vw,100px)}
+  .sale-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2vw,24px);margin-top:30px}
+  .sale-grid figure{margin:0;cursor:zoom-in;background:var(--sand);padding:14px 14px 16px}
+  .sale-grid img{width:100%;aspect-ratio:1;object-fit:cover}
+  .sale-grid figcaption{font-size:.9rem;margin-top:10px;line-height:1.35}
+  .sale-grid figcaption small{display:block;color:var(--soft);margin-top:3px}
+  .sale-head{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:end}
+  .sale-head h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,5vw,3.8rem);margin:0;line-height:1}
+  .sale-head p{color:var(--soft);margin:0}
+  @media(max-width:860px){.sale-grid{grid-template-columns:repeat(2,1fr)}.sale-head{grid-template-columns:1fr}}
+
+  /* Journal + guides */
+  .journal{border-top:2px solid var(--ink);padding-block:clamp(50px,7vw,90px)}
+  .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);margin-top:34px}
+  .entry{text-decoration:none;border-top:1px solid var(--ink);padding-top:16px}
+  .entry .k{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rust);font-weight:600}
+  .entry h3{font-family:var(--serif);font-weight:400;font-size:1.5rem;line-height:1.15;margin:.3em 0}
+  .entry p{color:var(--soft);margin:0;font-size:.95rem}
+  .entry img{width:100%;aspect-ratio:3/2;object-fit:cover;margin-bottom:14px}
+  @media(max-width:860px){.cols{grid-template-columns:1fr}}
+
+  .guides{background:var(--sand);padding:clamp(50px,7vw,90px) 0}
+  .guides .split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,70px);align-items:center}
+  .guides .pics{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .guides .pics img{aspect-ratio:3/4;object-fit:cover;width:100%}
+  @media(max-width:860px){.guides .split{grid-template-columns:1fr}}
+
+  /* Newsletter / contact */
+  .letter{background:var(--rust);color:#fff;padding:clamp(50px,7vw,90px) 0}
+  .letter .split{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+  .letter h2{font-family:var(--serif);font-weight:400;font-size:clamp(2.2rem,5vw,3.8rem);margin:0;line-height:1}
+  .letter form{display:flex;border-bottom:2px solid #fff}
+  .letter input{flex:1;background:none;border:0;color:#fff;font:inherit;font-size:1.05rem;padding:14px 0}
+  .letter input::placeholder{color:rgba(255,255,255,.75)}
+  .letter button{background:none;border:0;color:#fff;font:inherit;font-weight:600;cursor:pointer}
+  .letter .contact{margin-top:22px;font-size:.95rem;line-height:1.9}
+  .letter .contact a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.5)}
+  @media(max-width:860px){.letter .split{grid-template-columns:1fr}}
+  footer{padding:24px 0;font-size:.8rem;color:var(--soft)}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+  .proto{position:fixed;left:12px;bottom:12px;z-index:60;background:var(--ink);color:#fff;font-size:.72rem;padding:6px 10px;border-radius:4px;text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="top">
+    <span>Vancouver Island, British Columbia</span>
+    <nav>
+      <a href="#places">Paintings</a><a href="#for-sale">For sale</a><a href="#journal">Studio journal</a><a href="#guides">Field guides</a><a href="#contact">Contact</a>
+    </nav>
+  </div>
+  <header class="mast">
+    <h1>Phee Hudson<em>.</em></h1>
+    <div class="sub"><span>Paintings of the mountains and the coast, from a boathouse studio on the water.</span><span>Phillipa Hudson SFCA</span></div>
+  </header>
+
+  <section class="cover">
+    <figure id="cover-fig"></figure>
+    <div>
+      <span class="tag">New this season</span>
+      <h2 id="cover-title"></h2>
+      <p class="drop">Phee has spent a lifetime climbing, ski-touring and paddling through the landscapes she paints. The latest canvases return to the Rockies in winter and travel north to the great peaks of the St Elias range: Mt Logan, Mt St Elias and Denali.</p>
+      <p>Each one starts with a sketch or photograph made on the trail and is finished in the boathouse studio, in the bold, saturated acrylic colour her collectors know her for.</p>
+      <a class="link" href="#places" data-place="new">See all new paintings →</a>
+    </div>
+  </section>
+</div>
+
+<section class="places" id="places">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Browse by place</h2>
+      <p>Paintings gathered by where they were made, from the Rockies to the open Pacific. Tap a painting to see it larger.</p>
+      <div class="arrows"><button aria-label="Scroll left" id="l">←</button><button aria-label="Scroll right" id="r">→</button></div>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="strip" id="strip"></div>
+  </div>
+</section>
+
+<section class="sale wrap" id="for-sale">
+  <div class="sale-head">
+    <h2>Available<br>originals</h2>
+    <p>These paintings are available now. Ask about any of them, or about limited edition giclée prints on canvas: numbered editions of 100, each with a certificate of authenticity, from $275.</p>
+  </div>
+  <div class="sale-grid" id="sale"></div>
+</section>
+
+<section class="journal wrap" id="journal">
+  <h2>Studio journal</h2>
+  <div class="cols">
+    <a class="entry" href="https://phillipahudson.com/gallery/lake_louise_project" target="_blank" rel="noopener">
+      <img id="j1" alt="The Three Sisters canvas in progress">
+      <div class="k">Commission · 2013</div><h3>Three 6′ × 8′ canvases for Chateau Lake Louise</h3>
+      <p>Six weeks, three monumental paintings and a hotel lobby. Watch each one take shape.</p></a>
+    <a class="entry" href="https://phillipahudson.com/page/time_lapse_of_painting_mt_waddington" target="_blank" rel="noopener">
+      <img id="j2" alt="Mt Waddington painting">
+      <div class="k">Video</div><h3>Time-lapse: painting Mt Waddington</h3>
+      <p>The highest peak in the Coast Mountains, from first wash to final highlight.</p></a>
+    <a class="entry" href="https://phillipahudson.com/page/step_by_step_paint_a_mountain_scene" target="_blank" rel="noopener">
+      <img id="j3" alt="Triple Peak, step by step">
+      <div class="k">Demo</div><h3>Step by step: Triple Peak, Vancouver Island</h3>
+      <p>A walk through how a mountain scene is built up, layer by layer.</p></a>
+  </div>
+</section>
+
+<section class="guides" id="guides">
+  <div class="wrap split">
+    <div>
+      <h2>Field guides</h2>
+      <p>Phee is also the author of illustrated guides to the coastal flowers, alpine flowers and trees of the Pacific Northwest, written for hikers and paddlers who want to know what they are looking at.</p>
+      <a class="link" href="https://phillipahudson.com/page/coastal_flower_guide" target="_blank" rel="noopener">About the guides →</a>
+    </div>
+    <div class="pics" id="guide-pics"></div>
+  </div>
+</section>
+
+<section class="letter" id="contact">
+  <div class="wrap split">
+    <div>
+      <h2>Letters from<br>the boathouse</h2>
+      <p>An occasional note when new paintings are finished or a show is coming up.</p>
+    </div>
+    <div>
+      <form onsubmit="event.preventDefault();this.outerHTML='<p><b>Thank you!</b> (Prototype only, nothing was sent.)</p>'">
+        <input type="email" required placeholder="Your email address" aria-label="Email address"><button>Sign up →</button>
+      </form>
+      <div class="contact">
+        <a href="mailto:pheehudson@gmail.com">pheehudson@gmail.com</a> · <a href="tel:+12508889891">250 888 9891</a><br>
+        <a href="https://www.instagram.com/pheehudson/" target="_blank" rel="noopener">Instagram</a> · <a href="http://facebook.com/Phillipa-Phee-Hudson-SFCA-Art-Page-264932300308082" target="_blank" rel="noopener">Facebook</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="wrap"><span>© 2026 Phillipa Hudson. All rights reserved.</span><span>Concept 3 · “Boathouse”</span></div></footer>
+<a class="proto" href="../">← All concepts</a>
+
+<script src="../shared/works.js"></script>
+<script src="../shared/lightbox.js"></script>
+<script>
+const P = window.PHEE, $ = s => document.querySelector(s);
+const col = k => P.collections.find(c => c.key === k).works;
+
+// Group every painting by place, using words in its title.
+const PLACES = [
+  ["new", "New", null],
+  ["rockies", "Canadian Rockies", /louise|moraine|athabasca|columbia ice|wilcox|kananaskis|peyto|bow |bow$|cascade|macarthur|mcarthur|three sisters|sisiters|rundle|assiniboine|maligne|spirit island|emerald|o'hara|oesa|robson|edith cavell|temple|castle|yamnuska|babel|floe|icefield|ramparts|foothills|alberta|glasgow|glascow|nelson|pedley|kootenay|banff|canmore/i],
+  ["coastrange", "Coast Mountains", /waddington|garibaldi|garabaldi|tantalus|coast range|pemberton|whistler|squamish|athelney|salal|chilcotin|baker|seven sisters|cougar|asulkan|rogers pass|purcell|bugaboo|mica|swiss|nepal|paine|meadow|alpine|first light|lofty|skiing/i],
+  ["island", "Vancouver Island", /vancouver island|albert edward|golden hinde|triple peak|strathcona|tofino|long beach|schooner|florencia|french beach|nootka|sidney|pat bay|pirates/i],
+  ["north", "Yukon & Alaska", /yukon|tombstone|logan|st elias|denali|kaskawalsh|alaska/i],
+  ["coast", "Coast & Sea", null],
+];
+const seen = new Set(), groups = Object.fromEntries(PLACES.map(p => [p[0], []]));
+groups.new = col("new").slice();
+const all = [...col("available"), ...col("new"), ...col("mountains")];
+all.forEach(w => {
+  if (seen.has(w.id)) return; seen.add(w.id);
+  const hit = PLACES.find(p => p[2] && p[2].test(w.title));
+  if (hit && hit[0] !== "island") groups[hit[0]].push(w);
+  else if (hit) groups.island.push(w);
+  else groups.coastrange.push(w);
+});
+col("coast").forEach(w => {
+  if (PLACES[3][2].test(w.title)) groups.island.push(w); else groups.coast.push(w);
+});
+
+let place = "new";
+function renderStrip() {
+  const list = groups[place];
+  $("#strip").innerHTML = list.map((w, i) => `
+    <figure data-i="${i}"><img src="${w.src}" alt="${w.title.replace(/"/g,'&quot;')}" loading="lazy" onload="this.classList.add('ld')">
+    <figcaption><b>${P.isAvailable(w) ? "Available" : PLACES.find(p => p[0] === place)[1]}</b>${w.title}</figcaption></figure>`).join("");
+  $("#strip").scrollLeft = 0;
+}
+$("#chips").innerHTML = PLACES.map(p => `<button aria-pressed="${p[0]===place}" data-p="${p[0]}">${p[1]}<span>${groups[p[0]].length}</span></button>`).join("");
+function setPlace(p) {
+  place = p;
+  $("#chips").querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", b.dataset.p === p));
+  renderStrip();
+}
+$("#chips").onclick = e => { const b = e.target.closest("button"); if (b) setPlace(b.dataset.p); };
+$("#strip").onclick = e => { const f = e.target.closest("figure"); if (f) Lightbox.open(groups[place], +f.dataset.i, { renderMeta: meta }); };
+$("#l").onclick = () => $("#strip").scrollBy({ left: -innerWidth * .6, behavior: "smooth" });
+$("#r").onclick = () => $("#strip").scrollBy({ left: innerWidth * .6, behavior: "smooth" });
+document.querySelectorAll("[data-place]").forEach(a => a.addEventListener("click", () => setPlace(a.dataset.place)));
+renderStrip();
+
+function meta(w) {
+  const m = P.isAvailable(w)
+    ? `Original acrylic, available · <a href="mailto:pheehudson@gmail.com?subject=${encodeURIComponent(w.title)}">Ask about this painting</a>`
+    : `Acrylic on canvas · <a href="mailto:pheehudson@gmail.com?subject=${encodeURIComponent(w.title)}">Enquire</a>`;
+  return `<div class="t">${w.title}</div><div class="m">${m}</div>`;
+}
+
+// Cover story
+const cov = col("new")[1];
+$("#cover-fig").innerHTML = `<img src="${cov.large}" alt="${cov.title}"><figcaption>${cov.title}, acrylic on canvas</figcaption>`;
+$("#cover-fig").onclick = () => Lightbox.open(col("new"), 1, { renderMeta: meta });
+$("#cover-title").textContent = "Winter light in the Rockies, and the giants of the north";
+
+// For sale
+const sale = col("available").slice(0, 8);
+$("#sale").innerHTML = sale.map((w, i) => `<figure data-i="${i}"><img src="${w.src}" alt="${w.title.replace(/"/g,'&quot;')}" loading="lazy"><figcaption>${w.title}<small>Original acrylic · Enquire</small></figcaption></figure>`).join("");
+$("#sale").onclick = e => { const f = e.target.closest("figure"); if (f) Lightbox.open(sale, +f.dataset.i, { renderMeta: meta }); };
+
+// Journal images
+const ll = col("lakelouise");
+$("#j1").src = ll[1].src;
+$("#j2").src = P.img("mt_waddington", 1744159790);
+$("#j3").src = P.img("triple_peak_vancouver_island_2", 1593189095);
+const pt = P.artist.portraits;
+$("#guide-pics").innerHTML = [pt.kayak, pt.portrait, pt.ski].map((s, i) => `<img src="${s}" alt="${["Phee kayaking","Phee Hudson","Phee skiing"][i]}" loading="lazy">`).join("");
+</script>
+</body>
+</html>
